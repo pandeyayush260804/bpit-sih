@@ -1,5 +1,5 @@
 import Header from "./shared/component/header";
-import AppRoutes from "./shared/routes/approutes";
+import AppRoutes from "./shared/routes/AppRoutes.tsx";
 
 const App=()=>{
   return(<div>
