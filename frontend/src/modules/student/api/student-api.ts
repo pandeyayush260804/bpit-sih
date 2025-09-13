@@ -4,5 +4,11 @@ axios.defaults.baseURL=API_BASE_URL
 export const doRegister=(userData:unknown)=>{
     console.log("API_BASE_URL",API_BASE_URL,"user data is ",userData)
     
-    return axios.post("users",userData);
+    return axios.post("register",userData);
+}
+
+export const doLogin=(userData:unknown)=>{
+    console.log("API_BASE_URL",API_BASE_URL,"user data is ",userData)
+    
+    return axios.post("login",userData);
 }
