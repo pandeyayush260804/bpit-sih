@@ -1,13 +1,10 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import DarkVeil from "@/components/DarkVeil";
+import DarkVeil from '@/components/DarkVeil';
 
-const Profile = () => {
+const TProfile = () => {
   const [profile, setProfile] = useState<any>(null);
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const email = localStorage.getItem("email");
@@ -16,7 +13,7 @@ const Profile = () => {
       return;
     }
 
-    fetch(`http://localhost:9999/api/v1/student/profile?email=${email}`)
+    fetch(`http://localhost:9999/api/v1/teacher/profile?email=${email}`)
       .then((res) => {
         if (!res.ok) throw new Error("Profile not found");
         return res.json();
@@ -51,15 +48,12 @@ const Profile = () => {
   const profileItems = [
     { label: "Name", value: profile.name },
     { label: "Email", value: profile.email },
-    { label: "Branch", value: profile.branch },
-    { label: "Class", value: profile.class },
-    { label: "Roll No", value: profile.rollNo },
-    { label: "Year", value: profile.year },
+    { label: "Department", value: profile.department },
     { label: "Role", value: profile.role },
   ];
 
   return (
-    <div className="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <div className="min-h-screen flex justify-center items-center relative">
       <div className="absolute inset-0 z-0">
         <DarkVeil />
       </div>
@@ -70,16 +64,7 @@ const Profile = () => {
             My Profile
           </CardTitle>
         </CardHeader>
-
         <CardContent>
-          {/* Circular Profile Icon */}
-          <div className="flex justify-center mb-5">
-            <div className="w-24 h-24 rounded-full bg-indigo-600 flex items-center justify-center text-white text-5xl font-bold">
-              {profile.name ? profile.name.charAt(0).toUpperCase() : "U"}
-            </div>
-          </div>
-
-          {/* Profile Details */}
           <div className="space-y-5">
             {profileItems.map((item, index) => (
               <div
@@ -99,4 +84,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default TProfile;

@@ -1,5 +1,6 @@
 import Header from "./shared/component/header";
 import AppRoutes from "./shared/routes/AppRoutes.tsx";
+import Footer from "./shared/component/footer"; // 👈 import Footer
 
 const App = () => {
   return (
@@ -11,6 +12,9 @@ const App = () => {
       <main className="flex-1">
         <AppRoutes />
       </main>
+
+      {/* Footer always visible */}
+      <Footer />
     </div>
   );
 };

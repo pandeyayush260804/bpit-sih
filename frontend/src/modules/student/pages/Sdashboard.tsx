@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { BookOpen, User, LogOut, LayoutDashboard } from "lucide-react";
+import DarkVeli from "@/components/DarkVeil.tsx"; // ⚡ use DarkVeli instead of Lightning
 
 const Sdashboard = () => {
   const [role, setRole] = useState("");
@@ -48,88 +49,164 @@ const Sdashboard = () => {
   };
 
   return (
-    <div className="min-h-screen flex bg-gray-100">
-      {/* Sidebar */}
-      <aside className="w-64 bg-white shadow-lg flex flex-col">
-        <div className="p-6 border-b">
-          <h2 className="text-xl font-bold text-purple-600">Student Portal</h2>
-          <p className="text-sm text-gray-500">{role.toUpperCase()}</p>
-        </div>
-        <nav className="flex-1 p-4 space-y-3">
-          <Button variant="ghost" className="w-full justify-start gap-2">
-            <LayoutDashboard className="h-4 w-4" />
-            Dashboard
-          </Button>
-          <Button
-            variant="ghost"
-            className="w-full justify-start gap-2"
-            onClick={() => navigate("/profile")}  // ✅ Navigate to Profile Page
-          >
-            <User className="h-4 w-4" />
-            Profile
-          </Button>
-          <Button variant="ghost" className="w-full justify-start gap-2">
-            <BookOpen className="h-4 w-4" />
-            My Courses
-          </Button>
-        </nav>
-        <div className="p-4 border-t">
-          <Button
-            variant="destructive"
-            className="w-full flex gap-2"
-            onClick={handleLogout}
-          >
-            <LogOut className="h-4 w-4" />
-            Logout
-          </Button>
-        </div>
-      </aside>
+    <div className="relative min-h-screen w-full overflow-hidden">
+      {/* 🌌 DarkVeli Background */}
+      <div className="absolute inset-0 z-0">
+        <DarkVeli />
+      </div>
 
-      {/* Main Content */}
-      <main className="flex-1 p-6 space-y-6">
-        <header>
-          <h1 className="text-2xl font-semibold text-gray-800">Welcome back 👋</h1>
-          <p className="text-gray-500">Logged in as {email}</p>
-        </header>
+      {/* Page Content */}
+      <div className="relative z-10 flex min-h-screen">
+        {/* Sidebar */}
+        <aside className="w-64 bg-white/80 backdrop-blur-md shadow-lg flex flex-col">
+          <div className="p-6 border-b">
+            <h2 className="text-xl font-bold text-purple-600">Student Portal</h2>
+            <p className="text-sm text-gray-500">{role.toUpperCase()}</p>
+          </div>
+          <nav className="flex-1 p-4 space-y-3">
+            <Button variant="ghost" className="w-full justify-start gap-2">
+              <LayoutDashboard className="h-4 w-4" />
+              Dashboard
+            </Button>
+            <Button
+              variant="ghost"
+              className="w-full justify-start gap-2"
+              onClick={() => navigate("/profile")}
+            >
+              <User className="h-4 w-4" />
+              Profile
+            </Button>
+            <Button variant="ghost" className="w-full justify-start gap-2">
+              <BookOpen className="h-4 w-4" />
+              My Courses
+            </Button>
+          </nav>
+          <div className="p-4 border-t">
+            <Button
+              variant="destructive"
+              className="w-full flex gap-2"
+              onClick={handleLogout}
+            >
+              <LogOut className="h-4 w-4" />
+              Logout
+            </Button>
+          </div>
+        </aside>
 
-        {loading ? (
-          <p>Loading profile...</p>
-        ) : error ? (
-          <p className="text-red-500">{error}</p>
-        ) : profile ? (
-          <>
-            {/* <section className="mb-4">
-              <h2 className="text-lg font-medium">Profile Info</h2>
-              <p><strong>Name:</strong> {profile.name}</p>
-              <p><strong>Branch:</strong> {profile.branch}</p>
-              <p><strong>Class:</strong> {profile.class}</p>
-              <p><strong>Roll No:</strong> {profile.rollNo}</p>
-              <p><strong>Year:</strong> {profile.year}</p>
-            </section> */}
+        {/* Main Content */}
+        <main className="flex-1 p-6 space-y-6 ">
+          <header>
+            <h1 className="text-2xl font-semibold text-white">Welcome back 👋</h1>
+            <p className="text-gray-500">Logged in as {email}</p>
+          </header>
 
-            {/* Stats Section */}
+          {loading ? (
+            <p>Loading profile...</p>
+          ) : error ? (
+            <p className="text-red-500">{error}</p>
+          ) : profile ? (
             <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <Card className="shadow-md">
-                    <CardHeader>
-                    <CardTitle>Result Checker</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                    <p className="text-2xl font-bold text-purple-600">
-                        <button
-                        onClick={() => navigate("/checkresult")}
-                        className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
-                        >
-                        Go to Checker
-                        </button>
-                    </p>
-                    </CardContent>
-                </Card>
+              <Card className="bg-white/70 backdrop-blur-md border border-white/20 shadow-md">
+                <CardHeader>
+                  <CardTitle>Result Checker</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <Button
+                    onClick={() => navigate("/checkresult")}
+                    className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+                  >
+                    Go to Checker
+                  </Button>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/70 backdrop-blur-md border border-white/20 shadow-md">
+                <CardHeader>
+                  <CardTitle>Syllabus Explorer</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <Button
+                    onClick={() => navigate("/SExplorer")}
+                    className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+                  >
+                    Go to Syllabus
+                  </Button>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/70 backdrop-blur-md border border-white/20 shadow-md">
+                <CardHeader>
+                  <CardTitle>Time Table</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <Button
+                    onClick={() => navigate("/STimeTable")}
+                    className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+                  >
+                    Time Table
+                  </Button>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/70 backdrop-blur-md border border-white/20 shadow-md">
+                <CardHeader>
+                  <CardTitle>Attendance Calculator</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <Button
+                    onClick={() => navigate("/attendance")}
+                    className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+                  >
+                    Open Calculator
+                  </Button>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/70 backdrop-blur-md border border-white/20 shadow-md">
+                <CardHeader>
+                  <CardTitle>My Attendance</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <Button
+                    onClick={() => navigate("/sattendance")}
+                    className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+                  >
+                    View Attendance
+                  </Button>
+                </CardContent>
+              </Card>
+              <Card className="bg-white/70 backdrop-blur-md border border-white/20 shadow-md">
+                <CardHeader>
+                  <CardTitle>Smart Features</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <Button
+                    onClick={() => navigate("/studybuddy")}
+                    className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+                  >
+                    Ask SmartBot
+                  </Button>
+                </CardContent>
+              </Card>
+              <Card className="bg-white/70 backdrop-blur-md border border-white/20 shadow-md">
+                <CardHeader>
+                  <CardTitle>Announcements</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <Button
+                    onClick={() => navigate("/Sannouncement")}
+                    className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+                  >
+                    View Announcements
+                  </Button>
+                </CardContent>
+              </Card>
             </section>
-          </>
-        ) : (
-          <p>No profile data available.</p>
-        )}
-      </main>
+          ) : (
+            <p>No profile data available.</p>
+          )}
+        </main>
+      </div>
     </div>
   );
 };

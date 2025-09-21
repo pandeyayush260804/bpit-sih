@@ -6,3 +6,8 @@ export const createConnection=()=>{
     });
 
 }
+export const createTeacherConnection = () => {
+    return mongoose.createConnection(process.env.DB_URL2, {
+        maxPoolSize: 7
+    });
+};

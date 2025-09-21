@@ -6,17 +6,11 @@ const Header = () => {
       {/* Left-aligned Home */}
       <div className="text-lg font-bold">
         <Link to="/">Home</Link>
+        &nbsp; &nbsp;
+        <Link to="/about">About Us</Link> {/* 👈 Added here */}
       </div>
 
-      {/* Right-aligned Login & Register */}
-      <div className="space-x-4 text-lg">
-        <Link to="/login" className="hover:underline">
-          Login
-        </Link>
-        <Link to="/register" className="hover:underline">
-          Register
-        </Link>
-      </div>
+      
     </header>
   );
 };

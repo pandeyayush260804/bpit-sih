@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Angry } from "lucide-react";
 import { useState } from "react";
+import Lightning from "@/components/Lightning"; // ⚡ Lightning background
 
 const Register = () => {
   const [status, setStatus] = useState(false);
@@ -29,19 +30,16 @@ const Register = () => {
   });
 
   const alertJSX = (
-    <div>
-      <Alert variant="destructive">
-        <Angry />
-        <AlertTitle>Register Message</AlertTitle>
-        <AlertDescription>
-          Register Fail!!!
-        </AlertDescription>
-      </Alert>
-    </div>
+    <Alert variant="destructive">
+      <Angry />
+      <AlertTitle>Register Message</AlertTitle>
+      <AlertDescription>
+        Register Fail!!!
+      </AlertDescription>
+    </Alert>
   );
 
-  const registerSubmit = async (userData:unknown) => {
-    console.log("Form Submit", userData);
+  const registerSubmit = async (userData: unknown) => {
     try {
       const result = await doRegister(userData);
       if (result.data.message) {
@@ -49,70 +47,78 @@ const Register = () => {
         navigate('/login');
       } else {
         setStatus(true);
-        console.log("register fail");
       }
-      console.log("Result", result);
     } catch (err) {
+      setStatus(true);
       console.log("Register Fail", err);
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-500 to-blue-400 p-4">
-      <Card className="w-full max-w-md mx-auto shadow-lg rounded-2xl">
+    <div className="relative min-h-screen flex items-center justify-center p-4 overflow-hidden">
+      {/* ⚡ Lightning Background */}
+      <div className="absolute inset-0 z-0">
+        <Lightning hue={220} xOffset={0} speed={1} intensity={1} size={1} />
+      </div>
+
+      {/* Register Card */}
+      <Card className="relative z-10 w-full max-w-md mx-auto shadow-lg rounded-2xl bg-white/80 backdrop-blur-md border border-white/20">
         <CardHeader className="text-center">
-          <CardTitle className="text-xl font-semibold">Register Here</CardTitle>
-          <CardDescription>Quiz App Form</CardDescription>
+          <CardTitle className="text-xl font-semibold">Student Registration</CardTitle>
+          <CardDescription>Fill all fields to register</CardDescription>
         </CardHeader>
 
         <CardContent>
           {status && alertJSX}
           <form className="space-y-4" onSubmit={handleSubmit(registerSubmit)}>
             <div className="grid w-full gap-2">
-              <Label htmlFor="name">Name</Label>
-              <Input {...register('name')} type="text" id="name" placeholder="Name" />
+              <Label>Name</Label>
+              <Input {...register('name')} type="text" placeholder="Name" />
               <span className="text-red-500">{errors.name?.message}</span>
             </div>
 
             <div className="grid w-full gap-2">
-              <Label htmlFor="email">Email</Label>
-              <Input {...register('email')} type="email" id="email" placeholder="Email" />
+              <Label>Email</Label>
+              <Input {...register('email')} type="email" placeholder="Email" />
               <span className="text-red-500">{errors.email?.message}</span>
             </div>
 
             <div className="grid w-full gap-2">
-              <Label htmlFor="password">Password</Label>
-              <Input {...register('password')} type="password" id="password" placeholder="Password" />
+              <Label>Password</Label>
+              <Input {...register('password')} type="password" placeholder="Password" />
               <span className="text-red-500">{errors.password?.message}</span>
             </div>
 
             <div className="grid w-full gap-2">
-              <Label htmlFor="class">Class</Label>
-              <Input {...register('class')} type="text" id="class" placeholder="Class" />
+              <Label>Class</Label>
+              <select {...register('class')} className="border px-3 py-2 rounded">
+                <option value="">Select Class</option>
+                <option value="CSE-A">CSE-A</option>
+                <option value="CSE-B">CSE-B</option>
+                <option value="CSE-C">CSE-C</option>
+              </select>
               <span className="text-red-500">{errors.class?.message}</span>
             </div>
 
             <div className="grid w-full gap-2">
-              <Label htmlFor="year">Year</Label>
-              <Input {...register('year')} type="number" id="year" placeholder="Year" />
+              <Label>Year</Label>
+              <Input {...register('year')} type="number" placeholder="Year" />
               <span className="text-red-500">{errors.year?.message}</span>
             </div>
 
             <div className="grid w-full gap-2">
-              <Label htmlFor="rollNo">Roll No.</Label>
-              <Input {...register('rollNo')} type="text" id="rollNo" placeholder="Roll Number" />
+              <Label>Roll Number</Label>
+              <Input {...register('rollNo')} type="text" placeholder="Roll No." />
               <span className="text-red-500">{errors.rollNo?.message}</span>
             </div>
 
             <div className="grid w-full gap-2">
-              <Label htmlFor="branch">Branch</Label>
-              <Input {...register('branch')} type="text" id="branch" placeholder="Branch" />
+              <Label>Branch</Label>
+              <Input {...register('branch')} type="text" placeholder="Branch" />
               <span className="text-red-500">{errors.branch?.message}</span>
             </div>
 
-            <div className="pt-2">
-              <Button className="w-full">Register</Button>
-            </div>
+            <Button className="w-full">Register</Button>
           </form>
         </CardContent>
       </Card>

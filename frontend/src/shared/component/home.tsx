@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import Galaxy from '@/components/Galaxy';
+import Galaxy from "@/components/Galaxy";
+import logo from "@/assets/logo.png"; // <-- adjust path/filename if different
 
 const Home = () => {
   const navigate = useNavigate();
@@ -7,8 +8,17 @@ const Home = () => {
   return (
     <div className="relative min-h-screen bg-black">
       {/* Galaxy Background */}
-      <div style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, zIndex: 0 }}>
-        <Galaxy 
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          position: "absolute",
+          top: 0,
+          left: 0,
+          zIndex: 0,
+        }}
+      >
+        <Galaxy
           mouseRepulsion={true}
           mouseInteraction={true}
           density={1.5}
@@ -21,9 +31,18 @@ const Home = () => {
       {/* Content */}
       <div className="relative z-10 flex items-center justify-center min-h-screen">
         <div className="bg-white/80 backdrop-blur-md shadow-2xl rounded-2xl p-10 w-[420px] text-center transform transition duration-500 hover:scale-105 hover:shadow-3xl">
+          <img
+            src={logo}
+            alt="CampusConnect Logo"
+            className="mx-auto w-48 h-28 mb-6 drop-shadow-md object-cover rounded-lg bg-white/60 p-2"
+          />
+
+          {/* Heading */}
           <h1 className="text-4xl font-extrabold mb-4 text-gray-900 drop-shadow-sm">
-            Welcome 🚀
+            Welcome to <br />
+            <span className="text-indigo-600">CampusConnect</span>
           </h1>
+
           <p className="text-gray-700 mb-8 text-lg">
             Join us and start your journey today.
           </p>
