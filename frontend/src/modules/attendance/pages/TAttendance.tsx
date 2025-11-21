@@ -22,27 +22,29 @@ const TAttendance = () => {
   const [teacherId, setTeacherId] = useState<string | null>(null);
   const [subject, setSubject] = useState<string | null>(null);
 
-  // Fetch teacher profile using token only
+  // Track marked students for tick display
+  const [markedStudents, setMarkedStudents] = useState<{ [rollNo: string]: boolean }>({});
+
+  // Fetch teacher profile using email stored in localStorage
   const fetchTeacherProfile = async () => {
-  try {
-    const email = localStorage.getItem("email");  // ✅ use email, not token
-    if (!email) {
-      setError("No email found in localStorage. Please login first.");
-      return; // 🚫 don't navigate, just stop here
+    try {
+      const email = localStorage.getItem("email");
+      if (!email) {
+        setError("No email found in localStorage. Please login first.");
+        return;
+      }
+
+      const res = await fetchTProfile(email);
+      const teacher = res.data;
+
+      setTeacherId(teacher._id);
+      setSubject(teacher.subject);
+      setError(null);
+    } catch (err: any) {
+      console.error("❌ Failed to fetch teacher profile:", err.response || err.message);
+      setError("Failed to fetch teacher profile. Try again later.");
     }
-
-    const res = await fetchTProfile(email);
-    const teacher = res.data;
-
-    setTeacherId(teacher._id);
-    setSubject(teacher.subject);
-    setError(null);
-  } catch (err: any) {
-    console.error("❌ Failed to fetch teacher profile:", err.response || err.message);
-    setError("Failed to fetch teacher profile. Try again later.");
-    // 🚫 no navigate, just show error
-  }
-};
+  };
 
   // Fetch class attendance
   const fetchAttendance = async (className: string) => {
@@ -50,7 +52,7 @@ const TAttendance = () => {
     try {
       setLoading(true);
       setError(null);
-      const res = await getClassAttendance(className.trim()); 
+      const res = await getClassAttendance(className.trim());
       setStudents(res.data || []);
     } catch (err: any) {
       console.error("❌ Error fetching class attendance:", err.response || err.message);
@@ -70,8 +72,9 @@ const TAttendance = () => {
 
     try {
       setMarking(true);
-      await markAttendance({ rollNo, status, teacherId, subject }); 
-      await fetchAttendance(selectedClass); 
+      await markAttendance({ rollNo, status, teacherId, subject });
+      setMarkedStudents(prev => ({ ...prev, [rollNo]: true })); // mark student as done
+      await fetchAttendance(selectedClass);
     } catch (err: any) {
       console.error("❌ Error marking attendance:", err.response || err.message);
       setError("Failed to mark attendance.");
@@ -138,11 +141,11 @@ const TAttendance = () => {
                         <td className="p-2 border">{s.name}</td>
                         <td className="p-2 border">{s.rollNo}</td>
                         <td className="p-2 border">{s.class}</td>
-                        <td className="p-2 border space-x-2">
+                        <td className="p-2 border space-x-2 flex justify-center items-center">
                           <Button
                             size="sm"
                             className="bg-green-600 text-white"
-                            disabled={marking || !teacherId}
+                            disabled={marking || markedStudents[s.rollNo]}
                             onClick={() => handleMarkAttendance(s.rollNo, "Present")}
                           >
                             Present
@@ -150,11 +153,14 @@ const TAttendance = () => {
                           <Button
                             size="sm"
                             className="bg-red-600 text-white"
-                            disabled={marking || !teacherId}
+                            disabled={marking || markedStudents[s.rollNo]}
                             onClick={() => handleMarkAttendance(s.rollNo, "Absent")}
                           >
                             Absent
                           </Button>
+                          {markedStudents[s.rollNo] && (
+                            <span className="ml-2 text-green-600 font-bold text-xl">✔️</span>
+                          )}
                         </td>
                       </tr>
                     ))

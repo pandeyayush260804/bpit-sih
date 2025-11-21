@@ -8,6 +8,7 @@ const Header = () => {
         <Link to="/">Home</Link>
         &nbsp; &nbsp;
         <Link to="/about">About Us</Link> {/* 👈 Added here */}
+        
       </div>
 
       

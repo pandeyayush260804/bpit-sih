@@ -10,7 +10,6 @@ import {
   ClipboardList,
 } from "lucide-react";
 import DarkVeli from "@/components/DarkVeil.tsx"; // 🌌 DarkVeli bg
-
 const TDashboard = () => {
   const [email, setEmail] = useState("");
   const [profile, setProfile] = useState<any>(null);
@@ -38,7 +37,7 @@ const TDashboard = () => {
 
   const handleLogout = () => {
     localStorage.clear();
-    navigate("/tlogin");
+    navigate("/selector");
   };
 
   return (
@@ -102,42 +101,14 @@ const TDashboard = () => {
         {/* Main Content */}
         <main className="flex-1 p-6 space-y-6">
           <header>
-            <h1 className="text-2xl font-semibold text-gray-800">
-              Welcome back 👋 {profile?.name}
+            <h1 className="text-2xl font-semibold text-gray-200">
+              Welcome 👋 {profile?.name}
             </h1>
-            <p className="text-gray-500">Logged in as {email}</p>
+            <p className="text-gray-400">Logged in as {email}</p>
           </header>
 
           {/* Teacher Features Section */}
           <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Card className="bg-white/70 backdrop-blur-md border border-white/20 shadow-md">
-              <CardHeader>
-                <CardTitle>All Students</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <Button
-                  onClick={() => navigate("/tstudents")}
-                  className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
-                >
-                  View Students
-                </Button>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-white/70 backdrop-blur-md border border-white/20 shadow-md">
-              <CardHeader>
-                <CardTitle>Attendance</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <Button
-                  onClick={() => navigate("/tattendance")}
-                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-                >
-                  Mark Attendance
-                </Button>
-              </CardContent>
-            </Card>
-
             <Card className="bg-white/70 backdrop-blur-md border border-white/20 shadow-md">
               <CardHeader>
                 <CardTitle>Profile</CardTitle>
@@ -151,9 +122,39 @@ const TDashboard = () => {
                 </Button>
               </CardContent>
             </Card>
+            
             <Card className="bg-white/70 backdrop-blur-md border border-white/20 shadow-md">
               <CardHeader>
-                <CardTitle>Announcement</CardTitle>
+                <CardTitle>All Students</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Button
+                  onClick={() => navigate("/tstudents")}
+                  className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+                >
+                  View Students
+                </Button>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/70 backdrop-blur-md border border-white/20 shadow-md">
+              <CardHeader>
+                <CardTitle>Attendance</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Button
+                  onClick={() => navigate("/tattendance")}
+                  className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+                >
+                  Mark Attendance
+                </Button>
+              </CardContent>
+            </Card>
+
+            
+            <Card className="bg-white/70 backdrop-blur-md border border-white/20 shadow-md">
+              <CardHeader>
+                <CardTitle> Post Announcement</CardTitle>
               </CardHeader>
               <CardContent>
                 <Button
@@ -161,6 +162,20 @@ const TDashboard = () => {
                   className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
                 >
                   Go to Announcements
+                </Button>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/70 backdrop-blur-md border border-white/20 shadow-md">
+              <CardHeader>
+                <CardTitle>View Student Attendance</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Button
+                  onClick={() => navigate("/tview")}
+                  className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+                >
+                  Go to Attandace viewer
                 </Button>
               </CardContent>
             </Card>

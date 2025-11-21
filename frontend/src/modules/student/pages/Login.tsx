@@ -14,7 +14,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { loginSchema } from "../validations/login-validation";
 import { doLogin } from "../api/student-api";
-import Lightning from "@/components/Lightning.tsx"; // ⚡ import Lightning
+import Prism from "@/components/Prism"; // 🌌 import Prism
 
 const Login = () => {
   const [message, setMessage] = useState("");
@@ -60,10 +60,21 @@ const Login = () => {
 
   return (
     <div className="relative min-h-screen flex items-center justify-center p-4 overflow-hidden">
-      {/* ⚡ Lightning Background */}
-      <div className="absolute inset-0 z-0">
-        <Lightning hue={220} xOffset={0} speed={1} intensity={1} size={1} />
+      {/* 🌌 Prism Background */}
+      <div className="absolute inset-0 z-0 bg-black">
+        <Prism
+          animationType="rotate"
+          timeScale={0.5}
+          height={3.5}
+          baseWidth={5.5}
+          scale={3.6}
+          hueShift={220}
+          colorFrequency={1}
+          noise={0.1}
+          glow={1.2} // brighter glow
+        />
       </div>
+
 
       {/* Popup */}
       {showPopup && (

@@ -22,6 +22,12 @@ import TimetableExplorer from "@/modules/student/pages/timeTableExplorer.tsx";
 import StudyBuddy from "@/modules/student/pages/StudyBuddy.tsx";
 import SAnnouncement from "@/modules/announcement/pages/SAnnouncement.tsx";
 import TAnnouncement from "@/modules/announcement/pages/TAnnouncement.tsx";
+import Smart from "@/modules/student/pages/Smart.tsx";
+import DataStructures from "@/modules/student/pages/DataStructures.tsx";
+import WebDevGroup from "@/modules/student/pages/WebDevGroup.tsx";
+import SystemDesign from "@/modules/student/pages/SystemDesign.tsx";
+import SmartTodoApp from "@/modules/student/pages/SmartTodoApp.tsx";
+import TViewAttendance from "@/modules/attendance/pages/TViewAttendance.tsx";
 
 const AppRoutes = () => {
   return (
@@ -38,9 +44,16 @@ const AppRoutes = () => {
       <Route path="/SExplorer" element={<SyllabusExplorer />} /> 
       <Route path="/STimeTable" element={<TimetableExplorer/>} /> 
       <Route path="/studybuddy" element={<StudyBuddy/>} /> 
+      <Route path="/Smart" element={<Smart/>} />
+      <Route path="/SmartTodoApp" element={<SmartTodoApp/>} />
       {/* Anouncement routes */}
       <Route path="/Sannouncement" element={<SAnnouncement/>} />
       <Route path="/Tannouncement" element={<TAnnouncement/>} />
+
+      {/* Course pages */}
+        <Route path="/data-structures" element={<DataStructures />} />
+        <Route path="/web-dev-group" element={<WebDevGroup />} />
+        <Route path="/system-design" element={<SystemDesign />} />
 
       {/* Teacher routes */}
       <Route path="/tlogin" element={<TLogin />} />
@@ -54,6 +67,7 @@ const AppRoutes = () => {
       {/* Attendance ROutes */}
       <Route path="/sattendance" element={<SAttendance />} />
       <Route path="/tattendance" element={<TAttendance />} />
+      <Route path="/tview" element={<TViewAttendance />} />
     </Routes>
   );
 };

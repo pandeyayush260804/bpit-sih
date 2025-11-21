@@ -23,7 +23,7 @@ const DashboardSelector = () => {
         <Card className="w-[420px] rounded-3xl shadow-2xl bg-gray-900/95 border border-gray-700/60 hover:border-purple-500/50 transition-colors duration-300 backdrop-blur-md">
           <CardHeader className="text-center">
             <CardTitle className="text-3xl font-extrabold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-              Select one option
+              Select Your Role...
             </CardTitle>
           </CardHeader>
           <CardContent className="flex flex-col gap-6 p-6">

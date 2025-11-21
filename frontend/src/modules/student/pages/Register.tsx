@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Angry } from "lucide-react";
 import { useState } from "react";
-import Lightning from "@/components/Lightning"; // ⚡ Lightning background
+import Prism from "@/components/Prism";
 
 const Register = () => {
   const [status, setStatus] = useState(false);
@@ -57,8 +57,18 @@ const Register = () => {
   return (
     <div className="relative min-h-screen flex items-center justify-center p-4 overflow-hidden">
       {/* ⚡ Lightning Background */}
-      <div className="absolute inset-0 z-0">
-        <Lightning hue={220} xOffset={0} speed={1} intensity={1} size={1} />
+      <div className="absolute inset-0 z-0 bg-black">
+        <Prism
+          animationType="rotate"
+          timeScale={0.5}
+          height={3.5}
+          baseWidth={5.5}
+          scale={3.6}
+          hueShift={220}
+          colorFrequency={1}
+          noise={0.1}
+          glow={1.2} // brighter glow
+        />
       </div>
 
       {/* Register Card */}

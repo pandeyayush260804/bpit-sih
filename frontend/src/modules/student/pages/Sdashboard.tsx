@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { BookOpen, User, LogOut, LayoutDashboard } from "lucide-react";
-import DarkVeli from "@/components/DarkVeil.tsx"; // ⚡ use DarkVeli instead of Lightning
+import { BookOpen, User, LogOut, LayoutDashboard, Bell, HelpCircle } from "lucide-react";
+import DarkVeli from "@/components/DarkVeil.tsx";
 
 const Sdashboard = () => {
   const [role, setRole] = useState("");
@@ -45,12 +45,61 @@ const Sdashboard = () => {
 
   const handleLogout = () => {
     localStorage.clear();
-    navigate("/login");
+    navigate("/selector");
   };
+
+  // Dashboard cards with descriptions
+  const dashboardCards = [
+    {
+      title: "Result Checker",
+      description: "Check your latest exam results and grades easily.",
+      path: "/checkresult",
+    },
+    {
+      title: "Syllabus Explorer",
+      description: "Browse detailed syllabus for all your subjects.",
+      path: "/SExplorer",
+    },
+    {
+      title: "Time Table",
+      description: "View your daily and weekly schedule at a glance.",
+      path: "/STimeTable",
+    },
+    {
+      title: "Attendance Calculator",
+      description: "Calculate and analyze your attendance percentage.",
+      path: "/attendance",
+    },
+    {
+      title: "My Attendance",
+      description: "Track your attendance record per subject.",
+      path: "/sattendance",
+    },
+    {
+      title: "Smart Features",
+      description: "Access AI-powered tools to improve learning.",
+      path: "/studybuddy",
+    },
+    {
+      title: "Announcements",
+      description: "Stay updated with latest notices and news.",
+      path: "/Sannouncement",
+    },
+    {
+      title: "Skill-building Activities",
+      description: "Engage in exercises to enhance your skills.",
+      path: "/Smart",
+    },
+    {
+      title: "To Do",
+      description: "Manage your daily tasks and assignments.",
+      path: "/SmartToDoApp",
+    },
+  ];
 
   return (
     <div className="relative min-h-screen w-full overflow-hidden">
-      {/* 🌌 DarkVeli Background */}
+      {/* DarkVeli Background */}
       <div className="absolute inset-0 z-0">
         <DarkVeli />
       </div>
@@ -76,9 +125,29 @@ const Sdashboard = () => {
               <User className="h-4 w-4" />
               Profile
             </Button>
-            <Button variant="ghost" className="w-full justify-start gap-2">
+            <Button
+              variant="ghost"
+              className="w-full justify-start gap-2"
+              onClick={() => navigate("/Smart")}
+            >
               <BookOpen className="h-4 w-4" />
               My Courses
+            </Button>
+            <Button
+              variant="ghost"
+              className="w-full justify-start gap-2"
+              onClick={() => navigate("/notifications")}
+            >
+              <Bell className="h-4 w-4" />
+              Notifications
+            </Button>
+            <Button
+              variant="ghost"
+              className="w-full justify-start gap-2"
+              onClick={() => navigate("/help")}
+            >
+              <HelpCircle className="h-4 w-4" />
+              Help Center
             </Button>
           </nav>
           <div className="p-4 border-t">
@@ -94,7 +163,7 @@ const Sdashboard = () => {
         </aside>
 
         {/* Main Content */}
-        <main className="flex-1 p-6 space-y-6 ">
+        <main className="flex-1 p-6 space-y-6">
           <header>
             <h1 className="text-2xl font-semibold text-white">Welcome back 👋</h1>
             <p className="text-gray-500">Logged in as {email}</p>
@@ -106,101 +175,25 @@ const Sdashboard = () => {
             <p className="text-red-500">{error}</p>
           ) : profile ? (
             <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <Card className="bg-white/70 backdrop-blur-md border border-white/20 shadow-md">
-                <CardHeader>
-                  <CardTitle>Result Checker</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <Button
-                    onClick={() => navigate("/checkresult")}
-                    className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
-                  >
-                    Go to Checker
-                  </Button>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-white/70 backdrop-blur-md border border-white/20 shadow-md">
-                <CardHeader>
-                  <CardTitle>Syllabus Explorer</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <Button
-                    onClick={() => navigate("/SExplorer")}
-                    className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
-                  >
-                    Go to Syllabus
-                  </Button>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-white/70 backdrop-blur-md border border-white/20 shadow-md">
-                <CardHeader>
-                  <CardTitle>Time Table</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <Button
-                    onClick={() => navigate("/STimeTable")}
-                    className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
-                  >
-                    Time Table
-                  </Button>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-white/70 backdrop-blur-md border border-white/20 shadow-md">
-                <CardHeader>
-                  <CardTitle>Attendance Calculator</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <Button
-                    onClick={() => navigate("/attendance")}
-                    className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
-                  >
-                    Open Calculator
-                  </Button>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-white/70 backdrop-blur-md border border-white/20 shadow-md">
-                <CardHeader>
-                  <CardTitle>My Attendance</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <Button
-                    onClick={() => navigate("/sattendance")}
-                    className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
-                  >
-                    View Attendance
-                  </Button>
-                </CardContent>
-              </Card>
-              <Card className="bg-white/70 backdrop-blur-md border border-white/20 shadow-md">
-                <CardHeader>
-                  <CardTitle>Smart Features</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <Button
-                    onClick={() => navigate("/studybuddy")}
-                    className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
-                  >
-                    Ask SmartBot
-                  </Button>
-                </CardContent>
-              </Card>
-              <Card className="bg-white/70 backdrop-blur-md border border-white/20 shadow-md">
-                <CardHeader>
-                  <CardTitle>Announcements</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <Button
-                    onClick={() => navigate("/Sannouncement")}
-                    className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
-                  >
-                    View Announcements
-                  </Button>
-                </CardContent>
-              </Card>
+              {dashboardCards.map((card) => (
+                <Card
+                  key={card.title}
+                  className="bg-white/70 backdrop-blur-md border border-white/20 shadow-md hover:shadow-lg transition-all"
+                >
+                  <CardHeader>
+                    <CardTitle className="text-gray-800">{card.title}</CardTitle>
+                    <p className="text-gray-500 text-sm mt-1">{card.description}</p>
+                  </CardHeader>
+                  <CardContent>
+                    <Button
+                      onClick={() => navigate(card.path)}
+                      className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+                    >
+                      Open
+                    </Button>
+                  </CardContent>
+                </Card>
+              ))}
             </section>
           ) : (
             <p>No profile data available.</p>
