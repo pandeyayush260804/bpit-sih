@@ -12,7 +12,7 @@ dotenv.config(); // ✅ load env FIRST
 const app = express();
 
 /* ---------- MIDDLEWARE ---------- */
-aapp.use(
+app.use(
   cors({
     origin: [
       "http://localhost:5173",
