@@ -28,7 +28,7 @@ const TDashboard = () => {
     setEmail(storedEmail);
 
     fetch(
-      `http://localhost:9999/api/v1/teacher/profile?email=${storedEmail}`
+      `https://bpit-sih.onrender.com/api/v1/teacher/profile?email=${storedEmail}`
     )
       .then((res) => res.json())
       .then(setProfile)

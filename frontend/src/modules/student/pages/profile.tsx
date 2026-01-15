@@ -16,7 +16,7 @@ const Profile = () => {
       return;
     }
 
-    fetch(`http://localhost:9999/api/v1/student/profile?email=${email}`)
+    fetch(`https://bpit-sih.onrender.com/api/v1/student/profile?email=${email}`)
       .then((res) => {
         if (!res.ok) throw new Error("Profile not found");
         return res.json();

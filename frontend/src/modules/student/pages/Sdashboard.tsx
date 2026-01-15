@@ -33,7 +33,7 @@ const Sdashboard = () => {
     setRole(storedRole);
     setEmail(storedEmail);
 
-    fetch(`http://localhost:9999/api/v1/student/profile?email=${storedEmail}`)
+    fetch(`https://bpit-sih.onrender.com/api/v1/student/profile?email=${storedEmail}`)
       .then((res) => {
         if (!res.ok) throw new Error("Profile not found");
         return res.json();
