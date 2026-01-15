@@ -7,7 +7,7 @@ import Home from "../component/home.tsx";
 import DashboardSelector from "../component/dashboardSelector.tsx";
 import Sdashboard from "@/modules/student/pages/Sdashboard.tsx";
 import Profile from "@/modules/student/pages/profile.tsx";
-import CheckResult from "@/modules/student/pages/resultChecker.tsx";
+
 import TLogin from "@/modules/teacher/pages/TLogin.tsx";
 import TRegister from "@/modules/teacher/pages/TRegister.tsx";
 import TDashboard from "@/modules/teacher/pages/Tdashboard.tsx";
@@ -28,6 +28,8 @@ import WebDevGroup from "@/modules/student/pages/WebDevGroup.tsx";
 import SystemDesign from "@/modules/student/pages/SystemDesign.tsx";
 import SmartTodoApp from "@/modules/student/pages/SmartTodoApp.tsx";
 import TViewAttendance from "@/modules/attendance/pages/TViewAttendance.tsx";
+import Blank from "@/modules/student/pages/Blank.tsx";
+import Team from "../component/Team.tsx";
 
 const AppRoutes = () => {
   return (
@@ -39,7 +41,7 @@ const AppRoutes = () => {
       <Route path="/selector" element={<DashboardSelector />} />
       <Route path="/Sdashboard" element={<Sdashboard />} />
       <Route path="/profile" element={<Profile />} />
-      <Route path="/checkresult" element={<CheckResult />} />
+     
       <Route path="/attendance" element={<AttendanceCalc />} /> {/* ✅ Attendance Calculator route */}
       <Route path="/SExplorer" element={<SyllabusExplorer />} /> 
       <Route path="/STimeTable" element={<TimetableExplorer/>} /> 
@@ -68,6 +70,9 @@ const AppRoutes = () => {
       <Route path="/sattendance" element={<SAttendance />} />
       <Route path="/tattendance" element={<TAttendance />} />
       <Route path="/tview" element={<TViewAttendance />} />
+      <Route path="/blank" element={<Blank/>} />
+     <Route path="/team" element={<Team />} />
+      
     </Routes>
   );
 };

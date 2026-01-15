@@ -1,5 +1,9 @@
+import { useNavigate } from "react-router-dom";
+
 // src/pages/SystemDesign.tsx
+
 export default function SystemDesign() {
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
@@ -83,8 +87,11 @@ export default function SystemDesign() {
 
       {/* CTA */}
       <div className="text-center py-10">
-        <button className="bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-700">
-          Start Learning 🚀
+        <button
+          onClick={() => navigate("/blank")}
+          className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition"
+        >
+          Start Challenge 🚀
         </button>
       </div>
     </div>

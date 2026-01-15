@@ -49,12 +49,7 @@ const Sdashboard = () => {
   };
 
   const dashboardCards = [
-    {
-      title: "Result Checker",
-      description: "Check your latest exam results",
-      path: "/checkresult",
-      group: "Academic",
-    },
+    
     {
       title: "Syllabus Explorer",
       description: "Browse detailed syllabus",

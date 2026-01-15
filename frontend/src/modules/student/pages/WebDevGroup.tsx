@@ -1,5 +1,7 @@
 // src/pages/WebDevGroup.tsx
+import { useNavigate } from "react-router-dom";
 export default function WebDevGroup() {
+  const navigate=useNavigate();
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
@@ -85,11 +87,16 @@ export default function WebDevGroup() {
       </div>
 
       {/* CTA */}
+      {/* CTA */}
       <div className="text-center py-10">
-        <button className="bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700">
+        <button
+          onClick={() => navigate("/blank")}
+          className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition"
+        >
           Join Group 🤝
         </button>
       </div>
+      
     </div>
   );
 }
