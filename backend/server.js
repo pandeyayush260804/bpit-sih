@@ -12,15 +12,21 @@ dotenv.config(); // ✅ load env FIRST
 const app = express();
 
 /* ---------- MIDDLEWARE ---------- */
-app.use(
+aapp.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://your-frontend.vercel.app", // update later
+      "https://bpit-sih.vercel.app",
+      "https://bpit-sih-ayush-pandeys-projects-c697cb09.vercel.app"
     ],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
   })
 );
+
+// 👇 IMPORTANT: handle preflight
+app.options("*", cors());
 
 app.use(express.json());
 
