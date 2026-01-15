@@ -11,22 +11,27 @@ dotenv.config(); // ✅ load env FIRST
 
 const app = express();
 
-/* ---------- MIDDLEWARE ---------- */
-app.use(
-  cors({
-    origin: [
+const corsOptions = {
+  origin: function (origin, callback) {
+    const allowedOrigins = [
       "http://localhost:5173",
       "https://bpit-sih.vercel.app",
-      "https://bpit-sih-ayush-pandeys-projects-c697cb09.vercel.app"
-    ],
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: true,
-  })
-);
+      "https://bpit-sih-ayush-pandeys-projects-c697cb09.vercel.app",
+    ];
 
-// 👇 IMPORTANT: handle preflight
-app.options("*", cors());
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
+
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
 
 app.use(express.json());
 
